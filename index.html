@@ -1,0 +1,71 @@
+<html>
+<head>
+ <script language="JavaScript" type="text/javascript">
+
+var win = null;
+function newWindow(mypage,myname,w,h,features) {
+  var winl = (screen.width-w)/2;
+  var wint = (screen.height-h)/2;
+  if (winl < 0) winl = 0;
+  if (wint < 0) wint = 0;
+  var settings = 'height=' + h + ',';
+  settings += 'width=' + w + ',';
+  settings += 'top=' + wint + ',';
+  settings += 'left=' + winl + ',';
+  settings += features;
+  win = window.open(mypage,myname,settings);
+  win.window.focus();
+}
+
+function NoConfirm ()
+{
+win = top;
+win.opener = top;
+setTimeout("self.close()", 10000);
+}
+</script>
+<script language="JavaScript" type="text/javascript">
+  var mymessage = "Sorry, you are not allowed to use right click!";
+
+if (document.layers){
+document.captureEvents(Event.MOUSEDOWN);
+}
+
+function rtclickcheck(keyp){
+
+  if (document.layers && keyp.which != 1) {
+    alert(mymessage);
+    return false;
+  }
+
+
+  if (document.all && event.button != 1) { 
+    alert(mymessage);
+    return false;
+  }
+}
+document.onmousedown = rtclickcheck
+  </SCRIPT>
+</HEAD>
+
+<BODY><CENTER><BR><BR><BR><BR><BR>
+<font face="Comic Sans Ms">
+<TABLE WIDTH="80%" BGCOLOR="#8FBC8F">
+  <TR>
+	<TD><FIELDSET><CENTER>
+	<TABLE WIDTH="100%"><TR><TD><CENTER><IMG SRC="LOG.png" WIDTH="180" HEIGHT="120" BORDER="0" ALT=""></TD>
+    <TD><BR><BR><BR><BR><BR><CENTER>
+<FONT SIZE="2" COLOR="#000099" SIZE="COMIC SANS MS">
+ <U>Welcome to Virunga Reporting System<BR>
+ Click the link bellow to start<BR>
+ </U></FONT><BR><BR><BR><BR><BR><BR>
+<a href="#null" onClick="newWindow('vce.php','','1366','860','scrollbars=yes,statusbar=no')">Click Here to Start</a><BR><BR>
+</TD>
+<TD><CENTER><IMG SRC="contact.png" WIDTH="180" HEIGHT="120" BORDER="0" ALT=""></TD>
+</TR></TABLE>
+	<script>NoConfirm();</script>
+
+<BR><BR></TD></TR></TABLE></font>
+</BODY>
+
+</HTML>
