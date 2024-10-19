@@ -353,7 +353,7 @@ print("Welcome ".$_SESSION['name']);
 </ul>
 </div>
 <br><br>
-<div id="contents"><CENTER>
+ <div id="contents">
 <!-- <FONT SIZE="2" COLOR="#3090C7" FACE="COMIC SANS MS">
 		<U>FILL THE FORM TO SAVE VEHICULE FUEL CONSUMPTION</U></FONT><BR><BR>
 		<FORM METHOD="POST" ACTION="expenses.php" onsubmit="return checkform(this);">
@@ -443,7 +443,7 @@ $dat=$_SESSION['datef'];
 $operator=$_SESSION['name'];
 $local=$_SESSION['local'];
 
-	include('connect.php');
+include('connect.php');
 
 $qntphy=$frais/$pric;
 $qntphy=round($qntphy,2);
@@ -523,18 +523,18 @@ if($dat && $pric){
     
   
 
-echo "<FORM METHOD='POST' ACTION='expenses.php' NAME='Form' onsubmit='return checkformes(this);'>
-    <div class='container' style='width: 98%; margin: 0 auto;'>
+echo "<FORM METHOD='POST' ACTION='expenses.php' NAME='Form' onsubmit='return checkformes(this);' class='container'>
+    <div class='container' style='width: 100%; margin: 0 auto;'>
 
-        <div class='form-row'>
-            <div class='form-group col-md-2'>
-                <label for='heure'>TIME:</label>
+        <div class='col-lg-12 col-sm-12 col-md-6'>
+            <div class='form-group'>
+                <label for='heure' class='text-left'>TIME:</label>
                 <input type='text' id='heure' name='heure' value='$time' class='form-control'>
             </div>
 
-            <div class='form-group col-md-2'>
+            <div class='form-group '>
                 <label for='carid'>PLAQUE:</label>
-                <select name='carid' id='carid' class='form-control select2'>
+                <select name='carid'  id='carid' class='form-control select2'>
                     <option value='' selected></option>";
                     
                     include 'connect.php';
@@ -547,9 +547,9 @@ echo "<FORM METHOD='POST' ACTION='expenses.php' NAME='Form' onsubmit='return che
                 echo "</select>
             </div>
 
-            <div class='form-group col-md-2'>
+            <div class='form-group'>
                 <label for='driver'>DRIVER:</label>
-                <select name='driver' id='driver' class='form-control select2'>
+                <select name='driver' class='form-control' id='driver' class='form-control select2'>
                     <option value='' selected></option>";
                     
                     $dquery = mysqli_query($conn, "SELECT Name FROM driver GROUP BY Name ORDER BY Name ASC"); 
@@ -561,17 +561,17 @@ echo "<FORM METHOD='POST' ACTION='expenses.php' NAME='Form' onsubmit='return che
                 echo "</select>
             </div>
 
-            <div class='form-group col-md-2'>
+            <div class='form-group '>
                 <label for='kmarr'>KM/ARRIVE:</label>
                 <input type='text' id='kmarr' name='kmarr' class='form-control' oninput='validateNumberInput(this)'>
             </div>
 
-            <div class='form-group col-md-2'>
+            <div class='form-group '>
                 <label for='frais'>AMOUNT:</label>
                 <input type='text' id='frais' name='frais' class='form-control' oninput='validateNumberInput(this)'>
             </div>
 
-            <div class='form-group col-md-2'>
+            <div class='form-group '>
                 <label>&nbsp;</label> <!-- Empty label for spacing -->
                 <input type='submit' name='save' value='SAVE' class='btn btn-primary btn-block'>
                
