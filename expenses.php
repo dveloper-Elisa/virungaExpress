@@ -318,15 +318,49 @@ return true
   </script>
   
 <style>
-  tr { background-color: #DDDDDD}
+  tr { background-color: }
   .initial { background-color: #DDDDDD; color:#000000 }
   .normal { background-color: #CCCCCC }
   .highlight { background-color: #8888FF }
+  #centered{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  #subHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  #horizMenu{
+    background-color: darkgreen;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #horizMenu ul li a{
+    color: white
+  }
+  #wrapper{
+    min-width: fit-content;
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+ #bodyContainer{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+ }
 </style>
 
 </head>
 <body onLoad="document.forms.Form.heure.focus()">
-<div id="wrapper">
 <div id="header">
 
 <img style="float:left;margin-left:5px;margin-top:5px;" src="virungalogo.png" alt="" height=100px /> 
@@ -336,24 +370,21 @@ return true
 </div>
 <div id="horizMenu">
 <ul class="ullisthorizMenu">
-<li><a href="cardep.php">Car Departure</a></li>
-<li>|</li>
-<li><a href="expenses.php">Fuel</a></li>
-<li>|</li>
-<li><a href="greport.php">Report</a></li>
-<li>|</li>
-<li><a href="sreport.php">Stock</a></li>
-<li>|</li>
-<li><a href="settings.php">Settings</a></li>
-<li>|</li>
-<li><a href="distroysession.php">Log out</a> &nbsp;&nbsp;&nbsp;&nbsp;
-<FONT COLOR="#66CC33"><span align="right"><?php
-print("Welcome ".$_SESSION['name']);
-?></span></FONT>&nbsp;&nbsp;</li>
+<li><a href="./cardep.php">Car Departure</a></li>
+<li><a href="./expenses.php">Fuel</a></li>
+<li><a href="./greport.php">Report</a></li>
+<li><a href="./sreport.php">Stock</a></li>
+<li><a href="./settings.php">Settings</a></li>
+<li><a href="./distroysession.php">Log out</a> </li>
 </ul>
+<div COLOR="#fff"> 
+  <p>
+    <?php print("Welcome ".$_SESSION['name']); ?>
+  </p>
 </div>
-<br><br>
- <div id="contents">
+</div>
+
+
 <!-- <FONT SIZE="2" COLOR="#3090C7" FACE="COMIC SANS MS">
 		<U>FILL THE FORM TO SAVE VEHICULE FUEL CONSUMPTION</U></FONT><BR><BR>
 		<FORM METHOD="POST" ACTION="expenses.php" onsubmit="return checkform(this);">
@@ -361,8 +392,8 @@ print("Welcome ".$_SESSION['name']);
 		<INPUT TYPE="submit" name="submit" value="CONTINUE">
 	</FORM>
 	-->
-	
-	
+<div id="bodyContainer">
+<div id="contents">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">	
 <?php
 	if(isset($_POST['setPrevDate'])){
@@ -377,7 +408,7 @@ print("Welcome ".$_SESSION['name']);
 	
 	?>	
 <?php
-include'connect.php';
+include 'connect.php';
 
 $Branch=$_SESSION['local'];
 $query=mysqli_query($conn,"SELECT * FROM fuel_price where Branch='$Branch' ORDER BY fuel_price_id DESC limit 1");
@@ -389,8 +420,8 @@ $fromDate=$row['date'];
 $dat=$_SESSION['datef'];
 $pric=$row['price'];
 $currDate=$_SESSION['datef'];
-print("Current price from <b>$fromDate</b> is <b>$pric /L at $Branch</b> ");
-print("<br />Current Date:<font color=red> <b>$currDate </b></font>");
+print("<div id='subHeader'> <p>Current price from <b>$fromDate</b> is <b>$pric /L at $Branch</b> </p>");
+print("<p>Current Date:<font color=red> <b>$currDate </b></font> </p></div>");
 print("<HR WIDTH=90% style=border : none;
                       border-top : 'dashed 1px cyan';
                       color : '#FFFFFF' ;
@@ -400,7 +431,12 @@ print("<HR WIDTH=90% style=border : none;
 ?>	
 	
 <form action="expenses.php" method="post">
-Set Date for Previous fuel entries: <input type="text"   name="prevDate" value="<?php echo $_SESSION['datef']; ?>"  class='datepicker' id='dateprice' > <input type="submit" name="setPrevDate" value="Set Date">
+  <div id="centered">
+
+    Set Date for Previous fuel entries: 
+    <input type="text" name="prevDate" value="<?php echo $_SESSION['datef']; ?>"  class='datepicker' id='dateprice' > 
+    <input type="submit" name="setPrevDate" value="Set Date" class="btn btn-outline-success">
+  </div>
 </form>	
 
 <?php
@@ -655,7 +691,7 @@ print("</table>");
 	else{
 		 //$dat=$_SESSION['date'];
 	print("<FONT SIZE=2 COLOR=#3090C7 FACE='COMIC SANS MS'>
-		<BR><BR><BR><BR><BR><BR><BR><CENTER><U>NO RECORD FOR $dat</U></CENTER></FONT>");
+		<CENTER><U>NO RECORD FOR $dat</U></CENTER></FONT>");
 	}
 	
 
@@ -663,15 +699,9 @@ print("</table>");
 
 
 
-
-
-
-
-
-
-
 <p class="copyright">&copy; Copyright VIRUNGA EXPRESS: All rights reserved.</p>
-
+</div>
+</div>
 <!-- Include jQuery and Select2 JS -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js">
