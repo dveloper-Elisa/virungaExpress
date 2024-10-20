@@ -322,6 +322,7 @@ return true
   .initial { background-color: #DDDDDD; color:#000000 }
   .normal { background-color: #CCCCCC }
   .highlight { background-color: #8888FF }
+
   #centered{
     display: flex;
     align-items: center;
@@ -335,17 +336,7 @@ return true
     align-items: center;
     justify-content: center;
   }
-  #horizMenu{
-    background-color: darkgreen;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    justify-content: space-between;
-  }
-  #horizMenu ul li a{
-    color: white
-  }
+ 
   #wrapper{
     min-width: fit-content;
     border-radius: 16px;
@@ -359,15 +350,20 @@ return true
  }
 </style>
 
-</head>
+</head>	
+
 <body onLoad="document.forms.Form.heure.focus()">
 <div id="header">
-
-<img style="float:left;margin-left:5px;margin-top:5px;" src="virungalogo.png" alt="" height=100px /> 
-<!-- <img src="banner.png" alt="" />-->
-<h1>VIRUNGA EXPRESS</h1>
-<h2>Reporting System</h2>
+<div id="image">
+<img style="float:left;margin-left:5px;margin-top:5px;" src="virungalogo.png" alt="" width="50%"/> 
 </div>
+<div id="Headercontent">
+<h3>VIRUNGA EXPRESS</h3>
+<h5>Reporting System</h5>
+</div>
+</div>
+
+<!-- HEADER MENU -->
 <div id="horizMenu">
 <ul class="ullisthorizMenu">
 <li><a href="./cardep.php">Car Departure</a></li>
@@ -440,25 +436,7 @@ print("<HR WIDTH=90% style=border : none;
 </form>	
 
 <?php
-// Your PHP for handling data and session variables
 
-
-/*	if(isset($_POST['submit'])){
-		$dat=date('Y-m-d');
-		$pric=0;
-	$date=$_POST['date'];
-	$price=$_POST['price'];
-	//session_start();
-	//{
-         $_SESSION['date']=$date;
-		   $_SESSION['price']=$price;
-	//}
-}
-		if(isset($_SESSION['date']) && isset($_SESSION['price'])){  
-		   $dat=$_SESSION['date'];
-		   $pric=$_SESSION['price'];	
-		}
-*/	
 	print("<HR WIDTH=90% style=border : none;
                       border-top : 'dashed 1px cyan';
                       color : '#FFFFFF' ;
@@ -516,10 +494,10 @@ echo "<script>
 </script>";
 
 }else{
-print("<BR><BR><BR><BR><FORM ACTION=expenses.php>
-<FONT SIZE=4 COLOR=BLUE><B>
-<CENTER>KM DE DEPART: $kmdep SUPERIEUR AU KM D ARRIVE: $kmarr.!</CENTER></B></FONT><BR>
-<INPUT TYPE=submit VALUE=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TABINDEX=1></FORM>
+print("<FORM ACTION=expenses.php>
+<FONT SIZE=4 COLOR=BLUE>
+<CENTER>KM DE DEPART: $kmdep SUPERIEUR AU KM D ARRIVE: $kmarr.!</CENTER></B></FONT>
+<INPUT TYPE=submit VALUE= TABINDEX=1></FORM>
 	</div>
     </div>
 <p class=copyright>&copy; Copyright VIRUNGA EXPRESS: All rights reserved.</p>
@@ -667,7 +645,7 @@ while ($row = mysqli_fetch_assoc($query)) {
 
     print("
         <tr>
-            <td>&nbsp;&nbsp;$d</td>
+            <td>$d</td>
             <td>$h</td>
             <td>$p</td>
             <td>$m</td>
@@ -684,8 +662,8 @@ while ($row = mysqli_fetch_assoc($query)) {
 }
 $ft=$ft;
 $totfuel=$totfuel;
-print("<TR><TH COLSPAN=6><BR>TOTALS</th>
-<TH>$totfuel</TH><TH ><BR>$ft Rwf</TH><tr>");
+print("<TR><TH COLSPAN=6>TOTALS</th>
+<TH>$totfuel</TH><TH >$ft Rwf</TH><tr>");
 print("</table>");	
 	}
 	else{
