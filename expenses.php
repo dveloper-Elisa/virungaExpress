@@ -2,23 +2,32 @@
 session_start();
 date_default_timezone_set('Africa/Kigali'); 
 
-if($_SESSION['datef'] === null) {
-    $_SESSION['datef'] = date("Y-m-d");
+if (!isset($_SESSION['name']) || !isset($_SESSION['passe'])) {
+  header('Location: vce.php');
+  exit(); // Always use exit() after a header redirect
 }
 
-$operator = $_SESSION['name'];
-if($_SESSION['name'] == null || $_SESSION['passe'] == null){
-    header('location: vce.php');
+if (empty($_SESSION['datef'])) {
+  $_SESSION['datef'] = date("Y-m-d");
 }
+
+// if($_SESSION['datef'] === null) {
+//     $_SESSION['datef'] = date("Y-m-d");
+// }
+
+// $operator = $_SESSION['name'];
+// if($_SESSION['name'] == null || $_SESSION['passe'] == null){
+//     header('location: vce.php');
+// }
 ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>VIRUNGA EXPRESS-Reporting System</title>
 <link rel="stylesheet" type="text/css" href="csspage.css" /><!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- Bootstrap Datepicker CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet"> -->
 
     <!-- jQuery (required for Bootstrap Datepicker) -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -32,6 +41,8 @@ if($_SESSION['name'] == null || $_SESSION['passe'] == null){
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="./css/csspage.css" />
+
        
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -317,7 +328,7 @@ return true
 }
   </script>
   
-<style>
+<!-- <style>
   tr { background-color: }
   .initial { background-color: #DDDDDD; color:#000000 }
   .normal { background-color: #CCCCCC }
@@ -348,7 +359,7 @@ return true
   align-items: center;
   justify-content: center;
  }
-</style>
+</style> -->
 
 </head>	
 
@@ -373,7 +384,7 @@ return true
 <li><a href="./settings.php">Settings</a></li>
 <li><a href="./distroysession.php">Log out</a> </li>
 </ul>
-<div COLOR="#fff"> 
+<div COLOR="#ccc"> 
   <p>
     <?php print("Welcome ".$_SESSION['name']); ?>
   </p>
@@ -429,9 +440,9 @@ print("<HR WIDTH=90% style=border : none;
 <form action="expenses.php" method="post">
   <div id="centered">
 
-    Set Date for Previous fuel entries: 
-    <input type="text" name="prevDate" value="<?php echo $_SESSION['datef']; ?>"  class='datepicker' id='dateprice' > 
-    <input type="submit" name="setPrevDate" value="Set Date" class="btn btn-outline-success">
+    <p> Set Date for Previous fuel entries: </p>
+   <div> <input type="text" name="prevDate" value="<?php echo $_SESSION['datef']; ?>"  class='datepicker' id='dateprice' ></div>
+    <div><input type="submit" name="setPrevDate" value="Set Date" class="btn btn-outline-success"> </div>
   </div>
 </form>	
 

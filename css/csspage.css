@@ -1,0 +1,149 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Light gray background */
+    color: #333; /* Dark gray text for readability */
+}
+
+#header {
+    background-color: #3b3b3b; /* Bright yellow color for header */
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#subHeader{
+    text-align: center;
+}
+
+#contents{
+    padding: 5px;
+}
+#contents form input{
+    width: 100%;
+}
+#contents{
+    width: 100%;
+    align-items: center;
+}
+
+#image img {
+    max-width: 100%;
+    height: auto;
+}
+
+#Headercontent h3, #Headercontent h5 {
+    margin: 0;
+    color: #00ff15; /* Dark text instead of black */
+}
+
+/* Responsive layout */
+#bodyContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#centered {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#wrapper {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 2rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+input, select {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Buttons */
+button {
+    background-color: #ffcc00; /* Matching yellow for buttons */
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
+/* Date picker container */
+#dpCalendar {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    #header {
+        flex-direction: row;
+        text-align: center;
+        justify-content: space-evenly;
+    }
+    #Headercontent{
+        width: fit-content;
+        
+    }
+    #Headercontent h3{
+        font-size: large;
+        flex-wrap: nowrap;
+    }
+    #Headercontent h5 {
+        font-size: medium;
+        color: #05750e; /* Dark text instead of black */
+    }
+    
+    #bodyContainer {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    #wrapper {
+        padding: 1rem;
+    }
+    #centered{
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    #header h3 {
+        font-size: 1.2rem;
+    }
+    #centered{
+        flex-direction: column;
+        gap: 5px;
+    }
+    #header h5 {
+        font-size: 1rem;
+    }
+
+    button {
+        padding: 0.5rem 1rem;
+    }
+}
