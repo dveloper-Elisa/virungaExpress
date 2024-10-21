@@ -13,12 +13,11 @@ body {
 
 .MyLink { COLOR: #FF9966; font-size: 12px; font-family: 'fantasy';
 }
- .MyLink:hover { TEXT-DECORATION: underline; 
+.MyLink:hover { TEXT-DECORATION: underline; 
 }
 
 #wrapper {
 	position: relative;
-	/*width: 900px;*/
 	width: 90%;
 	height: 600px;
 	top: 0px;
@@ -35,26 +34,23 @@ body {
 	justify-content: space-evenly;
 } 
 
-#horizMenu {
-	/*width: 896px;*/
-	display: flex;
-	align-items: center;
-	width: 100%;
-	left: 0px;
-	border: 2px solid #3090C7;
-	background-color: green;
-}
 
 #contents {
-	/* position: relative; */
 	width: fit-content;
 	height: auto;
 	margin: 10px;
 	border: 2px solid #3090C7;
 	border-radius: 16px;
-	/* -moz-border-radius-bottomleft: 1em;
-	-moz-border-radius-bottomright: 1em; */
+	
 }
+
+#horizMenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    background-color: #05750e;
+  }
 
 
 #over {
@@ -82,19 +78,12 @@ body {
      border: 1px solid green;
 }
 
-#horizMenu{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    justify-content: space-between;
-	/* margin: 0 2rem; */
-  }
+
 
 #horizMenu ul li{
     color: white;
     border-right: 4px rgb(4, 238, 187) solid;
-    padding: 2px 5px;
+    /* padding: 2px 5px; */
   } 
 
 #horizMenu ul li a{
@@ -116,8 +105,7 @@ body {
 	float: left;
 	list-style-type: none;
 	text-align: center;
-	background-position: 0px 5px;
-	padding-left: 14px;
+	/* background-position: 0px 5px; */
 	color: #54C571;
 }
 .ullisthorizMenu li:hover {
@@ -129,10 +117,10 @@ a {
 	color: white;
 }
 
-#header h3, h5 {
+/* #header h3, h5 {
 	color: green;
 	text-align: center;
-}
+} */
 
 #Headercontent{
 	max-width: 25%;

@@ -384,8 +384,8 @@ return true
 <li><a href="./settings.php">Settings</a></li>
 <li><a href="./distroysession.php">Log out</a> </li>
 </ul>
-<div COLOR="#ccc"> 
-  <p>
+<div COLOR="white"> 
+  <p class="welcome-text">
     <?php print("Welcome ".$_SESSION['name']); ?>
   </p>
 </div>
@@ -440,7 +440,7 @@ print("<HR WIDTH=90% style=border : none;
 <form action="expenses.php" method="post">
   <div id="centered">
 
-    <p> Set Date for Previous fuel entries: </p>
+    <div> Set Date for Previous fuel entries: </div>
    <div> <input type="text" name="prevDate" value="<?php echo $_SESSION['datef']; ?>"  class='datepicker' id='dateprice' ></div>
     <div><input type="submit" name="setPrevDate" value="Set Date" class="btn btn-outline-success"> </div>
   </div>

@@ -37,6 +37,40 @@ body {
     height: auto;
 }
 
+/* DESIGNING MENU ON EXPENSES */
+
+#horizMenu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    background-color: #05750e;
+  }
+
+  .ullisthorizMenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .ullisthorizMenu li {
+    margin: 0 15px;
+  }
+
+  .ullisthorizMenu li a {
+    text-decoration: none;
+    text-align: center;
+    color: #000; /* Adjust link color as needed */
+  }
+
+  .welcome-text {
+    color: #ccc;
+    margin-top: 20px;
+    margin-right: 20px; /* Adjust spacing between the menu and welcome text */
+  }
+
 #Headercontent h3, #Headercontent h5 {
     margin: 0;
     color: #00ff15; /* Dark text instead of black */
