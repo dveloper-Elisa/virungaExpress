@@ -111,7 +111,6 @@ document.onmousedown = rtclickcheck
 <div id="horizMenu">
 <ul class="ullisthorizMenu">
 <li><a href="vce.php">Log in</a></li>
-<li>|</li>
 <li><a href="help.html">Help</a></li>
 </ul>
 </div>
@@ -124,7 +123,7 @@ document.onmousedown = rtclickcheck
 <tr><td>Username&nbsp;&nbsp;</td><TD>:&nbsp;&nbsp;<SELECT NAME="sloc">
 	<OPTION VALUE="" SELECTED>&nbsp;&nbsp; Select Location &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<?php
-   include'connect.php';
+   include 'connect.php';
   $nq=mysqli_query($conn,"SELECT  * FROM `locations` WHERE `desabled`='NO' ORDER BY station ASC");
   while($rw=mysqli_fetch_assoc($nq))
   {

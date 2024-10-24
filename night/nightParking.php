@@ -11,11 +11,22 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
-
+        #header-container{
+            min-width: 100%;
+            display: flex;
+            flex-direction: column;
+            margin-top: 0;
+        }
+        #header{
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
         .form-container {
             background-color: white;
             padding: 20px;
@@ -75,13 +86,44 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="../css/csspage.css">
 </head>
 
 <?php include "../connect.php"?>
 
 <body>
 
+<div id="header-container">
+<div id="header">
+<div id="image">
+<img style="float:left;margin-left:5px;margin-top:5px;" src="../virungalogo.png" alt="" width="50%"/> 
+</div>
+<div id="Headercontent">
+<h3>VIRUNGA EXPRESS</h3>
+<h5>Reporting System</h5>
+</div>
+</div>
+
+<!-- HEADER MENU -->
+<div id="horizMenu">
+<ul class="ullisthorizMenu">
+<li><a href="../cardep.php">Car Departure</a></li>
+<li><a href="../expenses.php">Fuel</a></li>
+<li><a href="../greport.php">Report</a></li>
+<li><a href="../sreport.php">Stock</a></li>
+<li><a href="../settings.php">Settings</a></li>
+<li><a href="../distroysession.php">Log out</a> </li>
+<li><a href="./nightInfo.php">Parking Report</a> </li>
+</ul>
+<div COLOR="white"> 
+  <p class="welcome-text">
+    <?php print("Welcome ".$_SESSION['name']); ?>
+  </p>
+</div>
+</div>
+</div>
 <div class="form-container">
+
     <h2>Car Night Parking Info</h2>
     <form action="process_form.php" method="POST">
         <label for="date">Date:</label>

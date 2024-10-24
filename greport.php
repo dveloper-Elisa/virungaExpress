@@ -2,6 +2,28 @@
 include("home.php");
 ?>
 
+<style>
+.night{
+	padding: 3px 10px;
+	background-color: #333333;
+	color: wheat;
+	font-size: medium;
+	font-weight: bold;
+	border: 1px goldenrod solid;
+	margin: 1em;
+	border-radius: 5px;
+
+}
+.night:hover{
+	background-color: wheat;
+	color: black;
+	transition: 30ms ease-in;
+	border-radius: 5px;
+	border: 1px goldenrod solid;
+	cursor: pointer;
+}
+</style>
+
 <div id="contents"><BR><BR>
 <CENTER><TABLE WIDTH="80%"><TR>
 <TD WIDTH="40%"><CENTER>
@@ -17,7 +39,7 @@ value="Fuel Report" style="height:1.5em; width:10em;"><BR>
 <TH>&nbsp;&nbsp;Expenses&nbsp;&nbsp;</td>
 </TR>
 <?php
-include'connect.php';
+include 'connect.php';
 $pofs=0;$poss=0;$poes=0;
 $dof=mysqli_query($conn,"SELECT *FROM store WHERE Item='carburant' AND DDate='$Date'");
 while($rof=mysqli_fetch_assoc($dof)){
@@ -69,7 +91,10 @@ value="Car's Report" style="height:1.6em; width:8em;"><br>
 <input type="button" onClick="parent.location='cars.php'" 
 value="Car's Location" style="height:1.6em; width:8em;"><br><br><br>
 <input type="button" onClick="parent.location='transaction.php'" 
-value="Transactions" style="height:1.6em; width:8em;"><br><br><br>
+value="Transactions" style="height:1.6em; width:8em;">
+<!-- ADDED NAVIGATION TO NIGHTPARKING INFO -->
+<input type="button" onclick="location='./night/nightParking.php'" value="Night Parking" class="night"/>
+
 </TD>
 </TR></TABLE>
 </center><BR><BR><BR>
