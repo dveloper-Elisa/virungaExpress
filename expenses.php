@@ -448,21 +448,29 @@ print("<HR WIDTH=90% style=border : none;
 
 <?php
 
-	print("<HR WIDTH=90% style=border : none;
+	print ("<HR WIDTH=90% style=border : none;
                       border-top : 'dashed 1px cyan';
                       color : '#FFFFFF' ;
                       background-color : '#FFFFFF' ;
-                      height : 2px;>");
+                      height : 2px;>"
+        );
 
-  if(isset($_POST['save'])){
+// /////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+////////////////////////////////////////
+// SAVING THE EXPENSES.PHP
+
+if(isset($_POST['save'])){
 	
 //$dat=$_POST['datef']; 
-$carid=$_POST['carid'];
-$heure=$_POST['heure'];
-$kmarr=$_POST['kmarr'];
-$frais=$_POST['frais'];
-$driver=$_POST['driver'];
-$dat=$_SESSION['datef'];
+$carid = $_POST['carid'];
+$heure = $_POST['heure'];
+$kmarr = $_POST['kmarr'];
+$frais = $_POST['frais'];
+$driver = $_POST['driver'];
+$dat = $_SESSION['datef'];
 //$pric=$_SESSION['price'];
 
 $operator=$_SESSION['name'];
@@ -476,7 +484,7 @@ $kmdep=0;
 $q2=mysqli_query($conn,"SELECT * FROM fuel WHERE PLAQUE='$carid'  ORDER BY `N` DESC LIMIT 1");
 while($row=mysqli_fetch_assoc($q2))
 	{
-$Previouskmarrival=$row['KMARR'];
+$Previouskmarrival = $row['KMARR'];
 	}
 if($Previouskmarrival <= $kmarr){
 //$q3=mysqli_query($conn,"update fuel SET KMARR='$kmarr',KMPARC='$kmarr'-KMDEP,MONTANT100KM=MONTANT/KMPARC*100,MONTANT1KM=MONTANT/KMPARC,LITERS100KM=ROUND((QTEPHYS/('$kmarr'-KMDEP)*100),1) WHERE KMDEP=$kmdep AND PLAQUE='$carid' AND KMPARC='O'");
@@ -491,18 +499,34 @@ $amount1km=$frais/$distance;
 $litas100=$qntphy*100/$distance;   //liters used over 100km
 $kmperone_liter=$distance/$qntphy; // how long distance in km covered using one liter of fuel
 
- $user=$_SESSION['userid'];
-           $station_id=$_SESSION['BRANCH'];
-             
-$query4=mysqli_query($conn,"INSERT INTO fuel (created_date,DATE,HEURE,PLAQUE,driver,MOTEUR,KMDEP,KMARR,KMPARC,QTEPHYS,PRIXUNIT,MONTANT,MONTANT100KM, MONTANT1KM, LITERS100KM,kmsper_one_liter,station_id,user_id) VALUES(now(),'$dat','$heure','$carid','$driver','$moteur','$Previouskmarrival','$kmarr','$distance','$qntphy','$pric','$frais','$amount100km','$amount1km','$litas100','$kmperone_liter','$station_id','$user')");
+ $user = $_SESSION['userid'];
+ $station_id = $_SESSION['BRANCH'];
+
+$query4 = mysqli_query($conn,"INSERT INTO fuel (created_date,DATE,HEURE,PLAQUE,driver,MOTEUR,KMDEP,KMARR,KMPARC,QTEPHYS,PRIXUNIT,MONTANT,MONTANT100KM, MONTANT1KM, LITERS100KM,kmsper_one_liter,station_id,user_id) VALUES(date(),'$dat','$heure','$carid','$driver','$moteur','$Previouskmarrival','$kmarr','$distance','$qntphy','$pric','$frais','$amount100km','$amount1km','$litas100','$kmperone_liter','$station_id','$user')");
 mysqli_error($conn);
-$dat=$_SESSION['datef'];
-$query5=mysqli_query($conn,"INSERT INTO store (created_date,DDate,Item,Spec,Quantity,Price,Plaque,Status,Document,Location,Operator) VALUES(now(),'$dat','fuel','$heure','$qntphy','$frais','$carid','2','Facture','$local','$operator')");
+
+
+$dat = $_SESSION['datef'];
+$query5 = mysqli_query($conn,"INSERT INTO `store` (`created_date`, `DDate`, `Item`, `Spec`, `Trans`, `Quantity`, `Price`, `Plaque`, `Status`, `Document`, `Location`, `Operator`) VALUES(date(),'$dat','fuel','$heure','$qntphy','$frais','$carid','2','Facture','$local','$operator')");
 mysqli_error($conn);
-echo "<script>
-    alert('Successfully saved');
-    window.location.href = 'expenses.php';  // Redirect to another page after alert
-</script>";
+$ql4 = $conn-> query($query4);
+$ql5 = $conn-> query($query5);
+
+if($ql4 && $ql5){
+
+  echo "<script>
+      alert('Successfully saved');
+      window.location.href = 'expenses.php';  // Redirect to another page after alert
+  </script>";
+}else{
+  echo "<script>
+      alert('Not Saved');
+      window.location.href = 'expenses.php';  // Redirect to another page after alert
+  </script>";
+
+}
+
+
 
 }else{
 print("<FORM ACTION=expenses.php>
@@ -613,7 +637,7 @@ echo "<FORM METHOD='POST' ACTION='expenses.php' NAME='Form' onsubmit='return che
 }
 
 
-include'connect.php';
+include 'connect.php';
 $dat=$_SESSION['datef'];
 $user=$_SESSION['userid'];
            $station_id=$_SESSION['BRANCH'];
