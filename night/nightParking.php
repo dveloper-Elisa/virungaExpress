@@ -137,7 +137,7 @@
             <?php 
             $placque = "SELECT Carid FROM cars";
             $result = mysqli_query($conn,$placque);
-
+            echo "<option disbled>Select Plaque</option>";
             if(mysqli_num_rows($result) > 0){
                 while ($rows = mysqli_fetch_assoc($result)){
                     echo "<option  value='".$rows['Carid']."'>".$rows['Carid']."</option>";
@@ -150,7 +150,21 @@
         <!-- <input type="text" id="placque" name="placque" placeholder="Enter Car Plaque" required> -->
 
         <label for="name_driver">Driver's Name:</label>
-        <input type="text" id="name_driver" name="name_driver" placeholder="Enter Driver's Name" required>
+        <select name='name_driver'>
+            <?php
+            $driver = "SELECT * FROM driver";
+            $result = mysqli_query($conn, $driver);
+            echo "<option disbled>Select Driver</option>";
+            if(mysqli_num_rows($result) > 0){
+                while($rows = mysqli_fetch_assoc($result)){
+                    echo "<option value = '".$rows['Name']."' required>".$rows['Name']."</option>";
+                }
+            }else{
+                echo "<option Value='' required>No Driver</option>";
+            }
+            ?>
+        </select>
+        
 
         <label for="ration">Ration:</label>
         <input type="number" id="ration" name="ration" required />

@@ -1,4 +1,8 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_error", 1);
+
+
 session_start();
 date_default_timezone_set('Africa/Kigali'); 
 
@@ -471,6 +475,7 @@ $kmarr = $_POST['kmarr'];
 $frais = $_POST['frais'];
 $driver = $_POST['driver'];
 $dat = $_SESSION['datef'];
+$station_name = $_POST['station_name'];
 //$pric=$_SESSION['price'];
 
 $operator=$_SESSION['name'];
@@ -502,32 +507,25 @@ $kmperone_liter=$distance/$qntphy; // how long distance in km covered using one 
  $user = $_SESSION['userid'];
  $station_id = $_SESSION['BRANCH'];
 
-$query4 = mysqli_query($conn,"INSERT INTO fuel (created_date,DATE,HEURE,PLAQUE,driver,MOTEUR,KMDEP,KMARR,KMPARC,QTEPHYS,PRIXUNIT,MONTANT,MONTANT100KM, MONTANT1KM, LITERS100KM,kmsper_one_liter,station_id,user_id) VALUES(date(),'$dat','$heure','$carid','$driver','$moteur','$Previouskmarrival','$kmarr','$distance','$qntphy','$pric','$frais','$amount100km','$amount1km','$litas100','$kmperone_liter','$station_id','$user')");
-mysqli_error($conn);
+ $query4=mysqli_query($conn,"INSERT INTO fuel (created_date,`DATE`,HEURE,PLAQUE,driver,MOTEUR,KMDEP,KMARR,KMPARC,QTEPHYS,PRIXUNIT,MONTANT,MONTANT100KM, MONTANT1KM, LITERS100KM,kmsper_one_liter,station_id,station_name,user_id) VALUES(now(),'$dat','$heure','$carid','$driver','$moteur','$Previouskmarrival','$kmarr','$distance','$qntphy','$pric','$frais','$amount100km','$amount1km','$litas100','$kmperone_liter','$station_id','$station_name','$user')");
+ mysqli_error($conn);
+ if (mysqli_error($conn)){
+  echo "<p style='color:red;'>".mysqli_error($conn)."</p>";
+  return;
+ }
 
-
-$dat = $_SESSION['datef'];
-$query5 = mysqli_query($conn,"INSERT INTO `store` (`created_date`, `DDate`, `Item`, `Spec`, `Trans`, `Quantity`, `Price`, `Plaque`, `Status`, `Document`, `Location`, `Operator`) VALUES(date(),'$dat','fuel','$heure','$qntphy','$frais','$carid','2','Facture','$local','$operator')");
-mysqli_error($conn);
-$ql4 = $conn-> query($query4);
-$ql5 = $conn-> query($query5);
-
-if($ql4 && $ql5){
-
-  echo "<script>
-      alert('Successfully saved');
-      window.location.href = 'expenses.php';  // Redirect to another page after alert
-  </script>";
-}else{
-  echo "<script>
-      alert('Not Saved');
-      window.location.href = 'expenses.php';  // Redirect to another page after alert
-  </script>";
-
-}
-
-
-
+ $dat=$_SESSION['datef'];
+ $query5=mysqli_query($conn,"INSERT INTO store (created_date,DDate,Item,Spec,Quantity,Price,Plaque,Status,Document,Location,Operator) VALUES(now(),'$dat','fuel','$heure','$qntphy','$frais','$carid','2','Facture','$local','$operator')");
+ mysqli_error($conn);
+//  check and display error
+ if (mysqli_error($conn)){
+  echo "<p style='color:red;'>".mysqli_error($conn)."</p>";
+  return;
+ }
+ echo "<script>
+     alert('Successfully saved');
+     window.location.href = 'expenses.php';  // Redirect to another page after alert
+ </script>";
 }else{
 print("<FORM ACTION=expenses.php>
 <FONT SIZE=4 COLOR=BLUE>
@@ -577,12 +575,12 @@ echo "<FORM METHOD='POST' ACTION='expenses.php' NAME='Form' onsubmit='return che
 
         <div class='col-lg-12 col-sm-12 col-md-6'>
             <div class='form-group'>
-                <label for='heure' class='text-left'>TIME:</label>
+                <label for='heure' class='text-left'>Time:</label>
                 <input type='text' id='heure' name='heure' value='$time' class='form-control'>
             </div>
 
             <div class='form-group '>
-                <label for='carid'>PLAQUE:</label>
+                <label for='carid'>Plaque:</label>
                 <select name='carid'  id='carid' class='form-control select2'>
                     <option value='' selected></option>";
                     
@@ -597,7 +595,7 @@ echo "<FORM METHOD='POST' ACTION='expenses.php' NAME='Form' onsubmit='return che
             </div>
 
             <div class='form-group'>
-                <label for='driver'>DRIVER:</label>
+                <label for='driver'>Driver:</label>
                 <select name='driver' class='form-control' id='driver' class='form-control select2'>
                     <option value='' selected></option>";
                     
@@ -611,12 +609,16 @@ echo "<FORM METHOD='POST' ACTION='expenses.php' NAME='Form' onsubmit='return che
             </div>
 
             <div class='form-group '>
-                <label for='kmarr'>KM/ARRIVE:</label>
+                <label for='station_name'>Station Name:</label>
+                <input type='text' id='station_name' name='station_name' class='form-control' requred>
+            </div>
+            <div class='form-group '>
+                <label for='kmarr'>KM/Arrive:</label>
                 <input type='text' id='kmarr' name='kmarr' class='form-control' oninput='validateNumberInput(this)'>
             </div>
 
             <div class='form-group '>
-                <label for='frais'>AMOUNT:</label>
+                <label for='frais'>Amount:</label>
                 <input type='text' id='frais' name='frais' class='form-control' oninput='validateNumberInput(this)'>
             </div>
 
